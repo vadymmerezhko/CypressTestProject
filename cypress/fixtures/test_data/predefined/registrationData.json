@@ -1,0 +1,58 @@
+{
+  "validUser": {
+    "firstName": "Carlos",
+    "lastName": "Vela",
+    "password": "PRBssword123a@",
+    "confirmPassword": "PRBssword123a@",
+    "expectedMessage": "Thank you for registering with Main Website Store.",
+    "comment": "Should log in with valid credentials"
+  },
+  "validFirstLastName": {
+    "firstName": "ewrrtgtrghfbd##$fg3456",
+    "lastName": "sdfserd$$$fg654",
+    "password": "PRBssword123a@",
+    "confirmPassword": "PRBssword123a@",
+    "expected": "Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored",
+    "comment": "Should not register with a password less than 8 characters"
+  },
+  "weakPassword": {
+    "sevenCharacters": {
+      "password": "p1Ss^gt",
+      "expected": "Minimum of different classes of characters in the password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.",
+      "comment": "Have less then 8 characters and all  in the password field"
+    },
+    "lessThenMinOnlyNumbers": {
+      "password": "1234567",
+      "expected": "Minimum of different classes of characters in the password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.",
+      "comment": "Have less then 8 characters and all characters are numbers in the password field"
+    }
+  },
+  "strongPassword": {
+    "firstName": "Taylor",
+    "lastName": "Swift",
+    "email": "taylorswift@example.com",
+    "password": "PRBssword123a@",
+    "confirmPassword": "PRBssword123a@",
+    "expected": "Please enter the same value again.",
+    "comment": "Should log in with valid credentials"
+  },
+  "existingEmail": {
+    "firstName": "Carlos",
+    "lastName": "Vela",
+    "email": "carlosvela@gmail.com",
+    "password": "carlosVela888",
+    "confirmPassword": "carlosVela888",
+    "expectedMessage": "There is already an account with this email address. If you are sure that it is your email address, click here to get your password and access your account.",
+    "expectedUrl": "https://magento.softwaretestingboard.com/customer/account/forgotpassword/",
+    "comment": "Should log in with valid credentials"
+  },
+  "emailAndPasswordNotTheSame": {
+    "firstName": "Toni",
+    "lastName": "Kroos",
+    "email": "toniKross888@gmail.com",
+    "password": "toniKross888@gmail.com",
+    "confirmPassword": "toniKross888@gmail.com",
+    "expected": "The password can't be the same as the email address. Create a new password and try again.",
+    "comment": "Should log in with valid credentials"
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "existingUser": {
+      "firstName" : "Carlos",
+      "lastName" : "Tevez",  
+      "email": "carloztevez@gmail.com",
+      "password": "carlozTevez!",
+      "expectedMessage": "",
+      "comment": ""
+    }
+  }
+
+  
