@@ -2,6 +2,7 @@
   "validUser": {
     "firstName": "Carlos",
     "lastName": "Vela",
+    "email": null,
     "password": "PRBssword123a@",
     "confirmPassword": "PRBssword123a@",
     "expectedMessage": "Thank you for registering with Main Website Store.",
@@ -11,18 +12,27 @@
     "firstName": "ewrrtgtrghfbd##$fg3456",
     "lastName": "sdfserd$$$fg654",
     "password": "PRBssword123a@",
+    "email": null,
     "confirmPassword": "PRBssword123a@",
     "expected": "Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored",
     "comment": "Should not register with a password less than 8 characters"
   },
   "weakPassword": {
     "sevenCharacters": {
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "confirmPassword": null,
       "password": "p1Ss^gt",
       "expected": "Minimum of different classes of characters in the password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.",
       "comment": "Have less then 8 characters and all  in the password field"
     },
     "lessThenMinOnlyNumbers": {
+      "firstName": null,
+      "lastName": null,
+      "email": null,
       "password": "1234567",
+      "confirmPassword": null,
       "expected": "Minimum of different classes of characters in the password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.",
       "comment": "Have less then 8 characters and all characters are numbers in the password field"
     }

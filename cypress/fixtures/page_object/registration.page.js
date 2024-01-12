@@ -10,12 +10,13 @@ class registrationPage {
  get errorMessage() { return cy.get('[data-ui-id="message-error"]') };
  get passwordError() { return cy.get('#password-error') } ;
 
- registerUser(firstName, lastName, email, password, confirmPassword) {
-    if(firstName) { this.firstNameInput.clear().type(firstName);}
-    if(lastName) { this.lastNameInput.clear().type(lastName);}
-    if(email) { this.emailInput.clear().type(email); }
-    if(password) { this.passwordInput.clear().type(password); }
-    if(confirmPassword) { this.confirmPasswordInput.clear().type(confirmPassword); }
+ registerUser(user) {
+   cy.visit('/customer/account/create/');
+    if(user.firstName) { this.firstNameInput.clear().type(user.firstName, {"delay":0});}
+    if(user.lastName) { this.lastNameInput.clear().type(user.lastName, {"delay":0});}
+    if(user.email) { this.emailInput.clear().type(user.email, {"delay":0}); }
+    if(user.password) { this.passwordInput.clear().type(user.password, {"delay":0}); }
+    if(user.confirmPassword) { this.confirmPasswordInput.clear().type(user.confirmPassword, {"delay":0}); }
     this.createAccountButton.click()
  }
 }

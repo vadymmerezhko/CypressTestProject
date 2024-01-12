@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 import accountPage from '../../fixtures/page_object/account.page.js';
 import registrationPage from "../../fixtures/page_object/registration.page.js"
 
-let firstName, lastName, email, password, confirmPassword, userData;
+let userData;
 
 describe("Registration", () => {
   before(() => {
@@ -12,15 +12,9 @@ describe("Registration", () => {
   });
   
   it("Should register new user", () => {
-    const user = userData.validUser;
-    let firstRandomEmail = faker.internet.email();
-    cy.visit('/customer/account/create/');
-    registrationPage.firstNameInput.type(user.firstName).should("be.visible");
-    registrationPage.lastNameInput.type(user.lastName).should("be.visible");
-    registrationPage.emailInput.type(firstRandomEmail).should("be.visible");
-    registrationPage.passwordInput.type(user.password).should("be.visible");
-    registrationPage.confirmPasswordInput.type(user.confirmPassword).should("be.visible");
-    registrationPage.createAccountButton.click();
+    let user = userData.validUser;
+    user.email = faker.internet.email();
+    registrationPage.registerUser(user);
     accountPage.successRegistrationMessage.should("contain", user.expectedMessage).and("be.visible");
     cy.url().should("include", "/customer/account/")
   })
@@ -38,16 +32,9 @@ describe("Registration", () => {
   })
   
   it("Verify if the numbers and special characters are allowed in the First and Last name", () => {
-    const user = userData.validFirstLastName;
-    let secondRandomEmail = faker.internet.email();
-    cy.visit('/customer/account/create/');
-    registrationPage.registerUser(
-      firstName = user.firstName,
-      lastName = user.lastName,
-      email = secondRandomEmail,
-      password = user.password,
-      confirmPassword = user.confirmPassword,
-    );
+    let user = userData.validFirstLastName;
+    user.email = faker.internet.email();
+    registrationPage.registerUser(user);
 
     registrationPage.errorMessage
     .should('contain', 'First Name is not valid!')
@@ -55,15 +42,8 @@ describe("Registration", () => {
   });
 
   it("Should not register with an email that already exists", () => {
-    cy.visit('/customer/account/create/');
     const user = userData.existingEmail;
-    registrationPage.registerUser(
-      firstName = user.firstName,
-      lastName = user.lastName,
-      email = user.email,
-      password = user.password,
-      confirmPassword = user.confirmPassword,
-    );
+    registrationPage.registerUser(user);
     registrationPage.errorMessage.should(($element) => {
       const actualText = $element.text().trim();
       expect(actualText).to.equal(user.expectedMessage)
@@ -77,15 +57,8 @@ describe("Registration", () => {
   });
 
   it("Verify that password can not be the same as the email", () => {
-    cy.visit('/customer/account/create/');
     const user = userData.emailAndPasswordNotTheSame;
-    registrationPage.registerUser(
-      firstName = user.firstName,
-      lastName = user.lastName,
-      email = user.email,
-      password = user.password,
-      confirmPassword = user.confirmPassword,
-    );
+    registrationPage.registerUser(user);
     registrationPage.passwordError.should("have.text", user.expected)
   })
 });

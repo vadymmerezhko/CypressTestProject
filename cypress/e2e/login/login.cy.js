@@ -10,10 +10,7 @@ describe('Login', () => {
     });
     it('Should log in', () => {
         const user = loginData.existingUser
-      cy.visit('https://magento.softwaretestingboard.com/customer/account/login')
-      loginPage.emailInput.type(user.email).should("be.visible");
-      loginPage.passwordInput.type(user.password).should("be.visible");
-      loginPage.signInButton.click();
+      loginPage.login(user)
       cy.url().should("include", "/customer/account/");
       accountPage.contactInfo
       .should("include.text", `${user.firstName} ${user.lastName}`)
